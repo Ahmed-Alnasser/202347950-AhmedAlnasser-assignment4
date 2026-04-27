@@ -12,6 +12,6 @@ node_modules/
 dist/
 build/
 guidelines.md
-presentation/speaker-notes.md
 presentation/slides.pdf
 presentation/recording-checklist.md
+presentation/speaker-notes.md
