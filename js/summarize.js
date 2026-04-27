@@ -53,7 +53,8 @@ summarizeBtn.addEventListener('click', async () => {
     try {
         const model = await loadModel();
 
-        // Warn before inference — this is the step that freezes the page
+        // Warn before inference — synchronous confirm() guarantees the user
+        // sees and acknowledges the warning before the page freezes.
         const ok = confirm(
             'The page will freeze for a few seconds while the AI model processes ' +
             'your message in your browser.\n\n' +
@@ -67,7 +68,7 @@ summarizeBtn.addEventListener('click', async () => {
         showBox('Generating summary...');
 
         // Yield to browser so the status text repaints before the freeze
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise((resolve) => setTimeout(resolve, 50));
 
         const output = await model(text, {
             max_new_tokens: 100,
