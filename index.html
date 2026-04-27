@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Speed up third-party connections -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- Stylesheets (load first to avoid render-blocking via FA) -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Font Awesome (loaded async with onload-swap to unblock first paint) -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <!-- EmailJS SDK (defer so it doesn't block parsing) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <div class="logo">My Portfolio</div>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="sections-toggle" aria-label="Collapse all sections" title="Collapse or expand all sections">Collapse All ⇡</button>
+            <button id="theme-toggle" aria-label="Toggle Dark Mode">Dark Mode 🌙</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Welcome to My Portfolio!</h1>
+                <p class="tagline">
+                    Second best AI Engineer in the world
+                </p> 
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-container">
+                <!-- Optional Profile Image -->
+                <div class="profile-image">
+                    <img src="assets/images/Personal_Image.jpg" alt="Profile Picture" width="200" height="200" decoding="async" fetchpriority="high">
+                </div>
+                
+                <div class="about-text">
+                    <!-- 2-3 sentence intro goes here -->
+                    <p>
+                        I’m Ahmed Alnasser, a Computer Science student at KFUPM with strong expertise in Artificial Intelligence through intensive programs at KAUST University and the University of Oxford. I’ve also led impactful initiatives as the Leader of the AI Committee in the KFUPM Computer Club to deliver high-impact events at KFUPM.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section (Extra) -->
+        <section id="skills">
+            <h2>Skills</h2>
+            <h3>Technical Skills</h3>
+            <ul class="skills-list">
+                <li>Python</li>
+                <li>PyTorch</li>
+                <li>NumPy</li>
+                <li>Matplotlib</li>
+                <li>Scikit-learn</li>
+            </ul>
+            <h3>Soft Skills</h3>
+            <ul class="skills-list">
+                <li>Problem Solving</li>
+                <li>Time Management</li>
+                <li>Leadership</li>
+                <li>Teamwork</li>
+                <li>Communication</li>
+            </ul>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                
+                <article class="project-card">
+                    <i class="fa fa-external-link project-icon" aria-hidden="true"></i>
+                    <a href="https://github.com/megaunit/transform_bot" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div class="project-info">
+                            <h3>Linear Transformation Visualizer</h3>
+                            <p>
+                                A Telegram bot that visualizes linear transformations in 2D, built by Manim and PyTelegramBotAPI.
+                            </p>
+                            <div class="project-image">
+                                <img src="assets/images/LinearTransform.png" alt="Linear Transformation Visualizer screenshot" loading="lazy" decoding="async" width="750" height="1252">
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <i class="fa fa-external-link project-icon" aria-hidden="true"></i>
+                    <a href="assets/pdf/PenaltyOracleReport.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div class="project-info">
+                            <h3>PenaltyOracle</h3>
+                            <p>
+                                An AI system that analyzes soccer penalty-kick videos by predicting the ball's trajectory, calculating objective metrics like expected goals on target (xGOT) and shot-style insights.
+                            </p>
+                            <div class="project-image">
+                                <img src="assets/images/PenaltyOracle.jpg" alt="PenaltyOracle project screenshot" loading="lazy" decoding="async" width="1600" height="1132">
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Achievements Section (Extra) -->
+        <section id="achievements">
+            <h2>Achievements</h2>
+            <ul class="achievements-list">
+                <!-- List your achievements -->
+                <li class="achievement-item" onclick="showOxfordModal()">
+                    <div>
+                        <h3>University of Oxford Summer Programme</h3>
+                        <p>Ranked top 15 out of 10,000+ in KAUST Academy program based on AI proficiency to attend an intensive AI program at the University of Oxford campus.</p>
+                        <p class="click-hint">Click to view certificate</p>
+                    </div>
+                </li>
+                <li class="achievement-item" onclick="showKGSPModal()">
+                    <div>
+                        <h3>KAUST Gifted Student Program</h3>
+                        <p>Prestigious, extremely selective scholarship (~150 top Saudi students) to fund their undergraduate studies in world's leading universities.</p>
+                        <p class="click-hint">Click to view certificate</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Subject</label>
+                    <input type="text" id="title" name="title" placeholder="Subject of your message" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="button" id="summarize-btn" class="summarize-btn">
+                        ✨ Summarize my message (AI)
+                    </button>
+                    <div id="summary-box" class="summary-box" aria-live="polite">
+                        <p id="summary-status" class="summary-status"></p>
+                        <p id="summary-text" class="summary-text"></p>
+                        <button type="button" id="use-summary-btn" class="use-summary-btn" hidden>
+                            Replace my message with this summary
+                        </button>
+                    </div>
+                </div>
+
+                <input type="hidden" id="time" name="time">
+
+                <button type="submit" id="contact-submit">Send Message</button>
+                <p id="contact-status" class="contact-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Simple Modals -->
+    <div id="oxfordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="hideOxfordModal()">&times;</span>
+            <h2>University of Oxford Summer Programme</h2>
+            <span class="cert-badge">🎓 Certificate</span>
+            
+            <div class="gallery">
+                <div class="certificate-frame">
+                    <img id="oxfordImg" src="assets/images/Oxford1.jpeg" alt="Oxford Certificate" loading="lazy" decoding="async" width="905" height="1280">
+                </div>
+                <br>
+                <button onclick="prevOxfordImg()">Previous</button>
+                <button onclick="nextOxfordImg()">Next</button>
+            </div>
+            <ul class="modal-list">
+                <li><i class="fa fa-trophy"></i> Ranked Top 15 out of 10,000+ applicants</li>
+                <li><i class="fa fa-university"></i> KAUST Academy selection program based on AI proficiency</li>
+                <li><i class="fa fa-calendar"></i> Intensive AI programme at the University of Oxford campus</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="kgspModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="hideKGSPModal()">&times;</span>
+            <h2>KAUST Gifted Student Program</h2>
+            <span class="cert-badge">🎓 Certificate</span>
+            
+            <div class="gallery">
+                <div class="certificate-frame">
+                    <img src="assets/images/KGSP.jpg" alt="KGSP Certificate" loading="lazy" decoding="async" width="1000" height="481">
+                </div>
+            </div>
+            <ul class="modal-list">
+                <li><i class="fa fa-star"></i> Prestigious, extremely selective scholarship</li>
+                <li><i class="fa fa-users"></i> ~150 top Saudi students</li>
+                <li><i class="fa fa-graduation-cap"></i> Fund undergraduate studies in world's leading universities</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 My Portfolio. All rights reserved.</p>
+        <div class="social-links">
+            <!-- Add social media links here -->
+            <a href="https://www.linkedin.com/in/ahmedalnasser-/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/megaunit" target="_blank">GitHub</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript: each file = one feature -->
+    <script defer src="js/theme.js"></script>
+    <script defer src="js/state.js"></script>
+    <script defer src="js/nav.js"></script>
+    <script defer src="js/typewriter.js"></script>
+    <script defer src="js/modals.js"></script>
+    <script defer src="js/contact.js"></script>
+    <!-- AI summarization (Transformers.js, ESM module = implicitly deferred) -->
+    <script type="module" src="js/summarize.js"></script>
+
+</body>
+</html>

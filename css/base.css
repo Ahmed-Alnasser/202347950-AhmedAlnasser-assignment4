@@ -1,0 +1,72 @@
+/* ============================================
+   BASE: theme variables, reset, typography
+   ============================================ */
+
+:root {
+  --primary-color: #2563eb;
+  --text-color: #333;
+  --bg-color: #f4f4f4;
+  --card-bg: #fff;
+  --header-bg: #fff;
+  --footer-bg: #1f2937;
+  --footer-text: #fff;
+  --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --transition: all 0.3s ease;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --primary-color: #2563eb;
+  --text-color: #e5e7eb;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --header-bg: #1e1e1e;
+  --footer-bg: #1e1e1e;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}

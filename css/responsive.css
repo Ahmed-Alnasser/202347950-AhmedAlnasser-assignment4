@@ -1,0 +1,73 @@
+/* ============================================
+   RESPONSIVE: mobile-only overrides (≤768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Header layout: logo + buttons on top, nav menu drops down */
+  nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 5%;
+  }
+
+  .nav-toggle {
+    display: flex;
+    order: 3;
+  }
+
+  #theme-toggle,
+  #sections-toggle {
+    order: 2;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  nav ul {
+    order: 4;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  nav ul.open {
+    max-height: 400px;
+    margin-top: 8px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul a {
+    display: block;
+    padding: 12px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  nav ul li:last-child a {
+    border-bottom: none;
+  }
+
+  /* Section content tweaks */
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
