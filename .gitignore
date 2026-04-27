@@ -1,27 +1,17 @@
-# OS
 .DS_Store
 Thumbs.db
-
-# Editor / IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# Logs
 *.log
 npm-debug.log*
-
-# Dependencies
 node_modules/
-
-# Environment / secrets
 .env
 .env.local
-
-# Build output
 dist/
 build/
-
-# Course-internal files
 guidelines.md
+presentation/speaker-notes.md
+presentation/slides.pdf
+presentation/recording-checklist.md
