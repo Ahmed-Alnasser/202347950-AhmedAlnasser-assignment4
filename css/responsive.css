@@ -96,3 +96,59 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Print: hide chrome, expand collapsed sections, simplify colors */
+@media print {
+  header,
+  footer,
+  .nav-toggle,
+  #theme-toggle,
+  #sections-toggle,
+  .back-to-top,
+  .modal,
+  .skip-link,
+  .hero-cta,
+  .summarize-btn,
+  .summary-box,
+  #contact-submit,
+  .click-hint,
+  .collapse-chevron {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  main {
+    max-width: 100%;
+    padding: 0;
+  }
+  section {
+    border-bottom: none;
+    padding: 16px 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  /* Force-expand any collapsed sections so the printout is complete */
+  section.collapsed .section-content {
+    grid-template-rows: 1fr !important;
+    opacity: 1 !important;
+  }
+  h1, h2, h3 {
+    color: #000 !important;
+  }
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  .skills-list li {
+    background: #eee !important;
+    color: #000 !important;
+    border: 1px solid #999;
+  }
+  .project-card,
+  .achievements-list li {
+    box-shadow: none !important;
+    border: 1px solid #999;
+  }
+}

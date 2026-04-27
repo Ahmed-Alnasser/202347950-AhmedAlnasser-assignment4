@@ -21,6 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
         contactStatus.className = 'contact-status ' + kind;
     }
 
+    // Live character counter for the message textarea
+    const messageInput   = document.getElementById('message');
+    const messageCounter = document.getElementById('message-counter');
+    if (messageInput && messageCounter) {
+        const max = parseInt(messageInput.getAttribute('maxlength'), 10) || 2000;
+        const updateCounter = () => {
+            const len = messageInput.value.length;
+            messageCounter.textContent = `${len} / ${max}`;
+            messageCounter.classList.toggle('near-limit', len >= max * 0.9 && len < max);
+            messageCounter.classList.toggle('at-limit',   len >= max);
+        };
+        messageInput.addEventListener('input', updateCounter);
+        updateCounter();
+    }
+
     contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -39,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(() => {
                 setStatus('✅ Message sent! I will get back to you soon.', 'success');
                 contactForm.reset();
+                // form.reset() doesn't fire 'input' — refresh the counter manually
+                if (messageInput) messageInput.dispatchEvent(new Event('input'));
             })
             .catch((err) => {
                 console.error('EmailJS error:', err);

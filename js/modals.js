@@ -5,18 +5,23 @@
 // onclick="showOxfordModal()" handlers on the achievement cards.
 // ============================================
 
+function setModalOpen(modal, open) {
+    modal.classList.toggle('show', open);
+    modal.setAttribute('aria-hidden', String(!open));
+}
+
 function showOxfordModal() {
-    document.getElementById('oxfordModal').classList.add('show');
+    setModalOpen(document.getElementById('oxfordModal'), true);
 }
 function hideOxfordModal() {
-    document.getElementById('oxfordModal').classList.remove('show');
+    setModalOpen(document.getElementById('oxfordModal'), false);
 }
 
 function showKGSPModal() {
-    document.getElementById('kgspModal').classList.add('show');
+    setModalOpen(document.getElementById('kgspModal'), true);
 }
 function hideKGSPModal() {
-    document.getElementById('kgspModal').classList.remove('show');
+    setModalOpen(document.getElementById('kgspModal'), false);
 }
 
 // Oxford gallery: 2 images, prev/next
@@ -40,4 +45,13 @@ window.addEventListener('click', (event) => {
     const kgsp   = document.getElementById('kgspModal');
     if (event.target === oxford) hideOxfordModal();
     if (event.target === kgsp)   hideKGSPModal();
+});
+
+// Escape key closes any open modal
+window.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const oxford = document.getElementById('oxfordModal');
+    const kgsp   = document.getElementById('kgspModal');
+    if (oxford && oxford.classList.contains('show')) hideOxfordModal();
+    if (kgsp   && kgsp.classList.contains('show'))   hideKGSPModal();
 });

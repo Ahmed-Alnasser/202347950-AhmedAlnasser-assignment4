@@ -31,6 +31,9 @@
 </head>
 <body>
 
+    <!-- Skip-to-content link (visible only when keyboard-focused) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Header / Navigation -->
     <header>
         <nav>
@@ -51,7 +54,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
 
         <!-- Hero Section -->
         <section id="hero">
@@ -113,7 +116,7 @@
                 
                 <article class="project-card">
                     <i class="fa fa-external-link project-icon" aria-hidden="true"></i>
-                    <a href="https://github.com/megaunit/transform_bot" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="https://github.com/megaunit/transform_bot" target="_blank" rel="noopener" class="project-link">
                         <div class="project-info">
                             <h3>Linear Transformation Visualizer</h3>
                             <p>
@@ -129,7 +132,7 @@
                 <!-- Project 2 -->
                 <article class="project-card">
                     <i class="fa fa-external-link project-icon" aria-hidden="true"></i>
-                    <a href="assets/pdf/PenaltyOracleReport.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="assets/pdf/PenaltyOracleReport.pdf" target="_blank" rel="noopener" class="project-link">
                         <div class="project-info">
                             <h3>PenaltyOracle</h3>
                             <p>
@@ -173,25 +176,35 @@
             <form id="contact-form" class="contact-form">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="text" id="name" name="name" placeholder="Your Name"
+                           required minlength="2" maxlength="80" autocomplete="name">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email"
+                           required maxlength="120" autocomplete="email" inputmode="email">
                 </div>
 
                 <div class="form-group">
                     <label for="title">Subject</label>
-                    <input type="text" id="title" name="title" placeholder="Subject of your message" required>
+                    <input type="text" id="title" name="title" placeholder="Subject of your message"
+                           required minlength="2" maxlength="120">
                 </div>
 
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message"
+                              required minlength="10" maxlength="2000"
+                              aria-describedby="message-counter"></textarea>
+                    <small id="message-counter" class="char-counter" aria-live="polite">0 / 2000</small>
                     <button type="button" id="summarize-btn" class="summarize-btn">
                         ✨ Summarize my message (AI)
                     </button>
+                    <p class="summarize-note">
+                        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                        Runs locally in your browser — your message never leaves your device.
+                    </p>
                     <div id="summary-box" class="summary-box" aria-live="polite">
                         <p id="summary-status" class="summary-status"></p>
                         <p id="summary-text" class="summary-text"></p>
@@ -211,10 +224,10 @@
     </main>
 
     <!-- Simple Modals -->
-    <div id="oxfordModal" class="modal">
+    <div id="oxfordModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="oxfordModal-title" aria-hidden="true">
         <div class="modal-content">
-            <span class="close-btn" onclick="hideOxfordModal()">&times;</span>
-            <h2>University of Oxford Summer Programme</h2>
+            <button type="button" class="close-btn" onclick="hideOxfordModal()" aria-label="Close certificate">&times;</button>
+            <h2 id="oxfordModal-title">University of Oxford Summer Programme</h2>
             <span class="cert-badge">🎓 Certificate</span>
             
             <div class="gallery">
@@ -233,10 +246,10 @@
         </div>
     </div>
 
-    <div id="kgspModal" class="modal">
+    <div id="kgspModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="kgspModal-title" aria-hidden="true">
         <div class="modal-content">
-            <span class="close-btn" onclick="hideKGSPModal()">&times;</span>
-            <h2>KAUST Gifted Student Program</h2>
+            <button type="button" class="close-btn" onclick="hideKGSPModal()" aria-label="Close certificate">&times;</button>
+            <h2 id="kgspModal-title">KAUST Gifted Student Program</h2>
             <span class="cert-badge">🎓 Certificate</span>
             
             <div class="gallery">
@@ -278,6 +291,7 @@
     </footer>
 
     <!-- JavaScript: each file = one feature -->
+    <script defer src="js/errors.js"></script>
     <script defer src="js/theme.js"></script>
     <script defer src="js/state.js"></script>
     <script defer src="js/nav.js"></script>
